@@ -41,6 +41,7 @@ void test_new_list_is_empty()
 {
     IntLinkedList * list = new_list();
     assert(is_empty(list));
+    free_list(list);
 }
 
 void test_list_is_not_empty_after_appending()
@@ -48,6 +49,7 @@ void test_list_is_not_empty_after_appending()
     IntLinkedList * list = new_list();
     append(list, 0);
     assert(!is_empty(list));
+    free_list(list);
 }
 
 void test_list_is_not_empty_after_prepending()
@@ -55,6 +57,7 @@ void test_list_is_not_empty_after_prepending()
     IntLinkedList * list = new_list();
     prepend(list, 1);
     assert(!is_empty(list));
+    free_list(list);
 }
 
 void test_list_with_length_one_is_empty_after_popping()
@@ -64,6 +67,7 @@ void test_list_with_length_one_is_empty_after_popping()
     assert(1 == length(list));
     pop_head(list);
     assert(is_empty(list));
+    free_list(list);
 }
 
 void test_tail_of_empty_list_is_empty_list()
@@ -73,6 +77,7 @@ void test_tail_of_empty_list_is_empty_list()
     IntLinkedList * tail_of_list = tail(list);
     assert(NULL != tail_of_list);
     assert(is_empty(tail_of_list));
+    free_list(list);
 }
 
 void test_head_of_list_is_last_prepend() {
@@ -80,6 +85,7 @@ void test_head_of_list_is_last_prepend() {
     int test_value = rand();
     prepend(list, test_value);
     assert(test_value == head(list));
+    free_list(list);
 }
 
 void test_tail_of_list_with_one_element_is_empty()
@@ -89,6 +95,7 @@ void test_tail_of_list_with_one_element_is_empty()
     assert(1 == length(list));
     IntLinkedList * tail_of_list = tail(list);
     assert(is_empty(tail_of_list));
+    free_list(list);
 }
 
 void test_tail_of_list_with_several_elements_is_not_empty()
@@ -98,6 +105,7 @@ void test_tail_of_list_with_several_elements_is_not_empty()
     append(list, 1);
     append(list, 2);
     assert(!is_empty(tail(list)));
+    free_list(list);
 }
 
 void test_tail_of_non_empty_list_is_one_smaller()
@@ -108,6 +116,7 @@ void test_tail_of_non_empty_list_is_one_smaller()
     append(list, 2);
     int expected = length(list) - 1;
     assert(expected == length(tail(list)));
+    free_list(list);
 }
 
 void test_head_of_tail_of_list_is_second_element()
@@ -117,18 +126,20 @@ void test_head_of_tail_of_list_is_second_element()
     append(list, 1);
     append(list, 2);
     assert(1 == head(tail(list)));
+    free_list(list);
 }
 
 void test_prepend_to_list_has_new_element_as_head()
 {
     IntLinkedList * list = new_list();
-    append(list, 0);
+    prepend(list, 0);
     assert(0 == head(list));
-    append(list, 1);
+    prepend(list, 1);
     assert(1 == head(list));
     int test_value = rand();
-    append(list, test_value);
+    prepend(list, test_value);
     assert(test_value == head(list));
+    free_list(list);
 }
 
 void test_append_to_list_has_new_element_as_last_in_list()
@@ -138,16 +149,18 @@ void test_append_to_list_has_new_element_as_last_in_list()
     append(list, 1);
     append(list, 2);
     assert(2 == head(tail(tail(list))));
+    free_list(list);
 }
 
-void test_pop_head_gets_last_append()
+void test_pop_head_gets_last_prepend()
 {
     IntLinkedList * list = new_list();
     append(list, 0);
     append(list, 1);
     int expected = rand();
-    append(list, expected);
+    prepend(list, expected);
     assert(expected == pop_head(list));
+    free_list(list);
 }
 
 void test_append_and_then_pop_has_invariant_length()
@@ -160,6 +173,7 @@ void test_append_and_then_pop_has_invariant_length()
     append(list, 2);
     pop_head(list);
     assert(expected == length(list));
+    free_list(list);
 }
 
 void test_pop_head_decrements_length()
@@ -171,7 +185,9 @@ void test_pop_head_decrements_length()
     int expected = length(list) - 1;
     pop_head(list);
     assert(expected == length(list));
+    free_list(list);
 }
+
 void test_get_zero_gets_head()
 {
     IntLinkedList * list = new_list();
@@ -179,6 +195,7 @@ void test_get_zero_gets_head()
     append(list, 1);
     append(list, 2);
     assert(head(list) == get(list, 0));
+    free_list(list);
 }
 
 void test_get_later_element_returns_correct_value()
@@ -189,6 +206,7 @@ void test_get_later_element_returns_correct_value()
     append(list, expected);
     append(list, 1);
     assert(expected == get(list, 1));
+    free_list(list);
 }
 
 void pass()
@@ -238,7 +256,7 @@ int main(int argc, char ** argv)
     pass();
 
     puts("Testing pop_head()");
-    test_pop_head_gets_last_append();
+    test_pop_head_gets_last_prepend();
     test_append_and_then_pop_has_invariant_length();
     test_pop_head_decrements_length();
     pass();
