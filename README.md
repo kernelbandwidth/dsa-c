@@ -9,7 +9,9 @@
 ### Lists
 - Abstract Interface
 - Linked Lists (Tests Done)
-- Doubly-Linked Lists
+    - Iterators
+- Doubly-Linked Lists (Tests Done)
+    - Double Ended Iterators
 - Array Lists
 
 ### Stack
