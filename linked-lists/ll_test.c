@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "ll.h"
+#include "../test-util/util.h"
 
 void test_new_list_returns_value() 
 {
@@ -209,11 +210,6 @@ void test_get_later_element_returns_correct_value()
     free_list(list);
 }
 
-void pass()
-{
-    puts("Test passed!");
-}
-
 int main(int argc, char ** argv)
 {
     puts("Running tests.");
@@ -266,11 +262,7 @@ int main(int argc, char ** argv)
     test_get_later_element_returns_correct_value();
     pass();
 
-    puts("############################");
-    puts("#                          #");
-    puts("# Congrats! All Test Pass! #");
-    puts("#                          #");
-    puts("############################");
+    pass_all();
 
     return 0;
 }
