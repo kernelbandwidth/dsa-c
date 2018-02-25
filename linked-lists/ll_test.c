@@ -122,12 +122,12 @@ void test_head_of_tail_of_list_is_second_element()
 void test_prepend_to_list_has_new_element_as_head()
 {
     IntLinkedList * list = new_list();
-    append(list, 0);
+    prepend(list, 0);
     assert(0 == head(list));
-    append(list, 1);
+    prepend(list, 1);
     assert(1 == head(list));
     int test_value = rand();
-    append(list, test_value);
+    prepend(list, test_value);
     assert(test_value == head(list));
 }
 
@@ -140,13 +140,13 @@ void test_append_to_list_has_new_element_as_last_in_list()
     assert(2 == head(tail(tail(list))));
 }
 
-void test_pop_head_gets_last_append()
+void test_pop_head_gets_last_prepend()
 {
     IntLinkedList * list = new_list();
     append(list, 0);
     append(list, 1);
     int expected = rand();
-    append(list, expected);
+    prepend(list, expected);
     assert(expected == pop_head(list));
 }
 
@@ -238,7 +238,7 @@ int main(int argc, char ** argv)
     pass();
 
     puts("Testing pop_head()");
-    test_pop_head_gets_last_append();
+    test_pop_head_gets_last_prepend();
     test_append_and_then_pop_has_invariant_length();
     test_pop_head_decrements_length();
     pass();
