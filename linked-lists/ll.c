@@ -7,6 +7,14 @@ struct _IntLinkedListNode {
     IntLinkedListNode * next;
 };
 
+IntLinkedListNode * new_node(int value)
+{
+    IntLinkedListNode * node = malloc(sizeof *node);
+    node->value = value;
+    node->next = NULL;
+    return node;
+}
+
 struct _IntLinkedList {
     IntLinkedListNode * head;
     IntLinkedListNode * tail;
@@ -34,44 +42,96 @@ void free_list(IntLinkedList * list)
 
 }
 
-// TODO(student): Fill in these implementations so that all of the tests pass
+// Implemented Solutions
 int length(IntLinkedList * list)
 {
-    return 0;
+    int length = 0;
+    IntLinkedListNode * current = list->head;
+
+    while(NULL != current) {
+	length++;
+	current = current->next;
+    }
+
+    return length;
 }
 
 bool is_empty(IntLinkedList * list)
 {
-    return true;
+    return NULL == list->head;
 }
 
 void prepend(IntLinkedList * list, int value)
 {
+    IntLinkedListNode * node = new_node(value);
+    
+    if (NULL != list->head) {
+	node->next = list->head;
+    }
 
+    list->head = node;
+    
+    if (NULL == list->tail) {
+	list->tail = list->head;
+    }
 }
 
 void append(IntLinkedList * list, int value)
 {
+    IntLinkedListNode * node = new_node(value);
+    if (NULL == list->tail) {
+	list->tail = node;
+    } else {
+	list->tail->next = node;
+	list->tail = node;
+    }
 
+    if (NULL == list->head) {
+	list->head = node;
+    }
 }
 
 int head(IntLinkedList * list)
 {
-    return 0;
+    // TODO: This can die more gracefully if the list is empty.
+    return list->head->value;
 }
 
 IntLinkedList * tail(IntLinkedList * list)
 {
-    return NULL;
+    if (NULL == list->head) {
+	return new_list();
+    }
+
+    if (list->head == list->tail) {
+	return new_list();
+    }
+
+    IntLinkedList * tail_list = new_list();
+    tail_list->head = list->head->next;
+    tail_list->tail = list->tail;
+
+    return tail_list;
 }
 
 int pop_head(IntLinkedList * list)
 {
-    return 0;
+    // TODO: This can die more gracefully if the list is empty.
+    int head = list->head->value;
+    list->head = list->head->next;
+    if (NULL == list->head) {
+	list->tail = NULL;
+    }
+    return head;
 }
 
 int get(IntLinkedList * list, int index)
 {
-    return 0;
+    IntLinkedListNode * node = list->head;
+    while (index > 0) {
+	node = node->next;
+	index--;
+    }
+    return node->value;
 }
 
