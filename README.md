@@ -9,12 +9,14 @@
 ### Lists
 - Abstract Interface
 - Linked Lists (Tests Done)
-- Doubly-Linked Lists
-- Array Lists
+    - Iterators
+- Doubly-Linked Lists (Tests Done)
+    - Double Ended Iterators
+- Vectors
 
-### Stack
+### Stacks
 - Abstract Interface
-- Array Backed
+- Vector Backed
 - Linked List Backed
 
 ### Binary Trees
