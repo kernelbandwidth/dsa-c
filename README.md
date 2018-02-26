@@ -12,11 +12,11 @@
     - Iterators
 - Doubly-Linked Lists (Tests Done)
     - Double Ended Iterators
-- Array Lists
+- Vectors
 
-### Stack
+### Stacks
 - Abstract Interface
-- Array Backed
+- Vector Backed
 - Linked List Backed
 
 ### Binary Trees
