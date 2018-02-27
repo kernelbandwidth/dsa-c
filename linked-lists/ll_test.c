@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "ll.h"
-#include "../test-util/util.h"
+#include "../test-util/sctf.h"
 
 void test_new_list_returns_value() 
 {
@@ -212,58 +212,35 @@ void test_get_later_element_returns_correct_value()
 
 int main(int argc, char ** argv)
 {
-    puts("Running tests.");
-    
-    puts("Testing new_list()");
-    test_new_list_returns_value();
-    pass();
+    puts("Starting test suite.");
+    REGISTER_TEST(test_new_list_returns_value);
+    puts("Registered a test.");
+    REGISTER_TEST(test_new_list_has_length_zero);
+    REGISTER_TEST(test_appending_to_list_increments_length);
+    REGISTER_TEST(test_prepending_to_list_increments_length);
+    REGISTER_TEST(test_new_list_is_empty);
+    REGISTER_TEST(test_list_is_not_empty_after_appending);
+    REGISTER_TEST(test_list_is_not_empty_after_prepending);
+    REGISTER_TEST(test_list_with_length_one_is_empty_after_popping);
+    REGISTER_TEST(test_prepend_to_list_has_new_element_as_head); 
+    REGISTER_TEST(test_append_to_list_has_new_element_as_last_in_list);
+    REGISTER_TEST(test_head_of_list_is_last_prepend);
+    puts("AAAA");
+    REGISTER_TEST(test_tail_of_empty_list_is_empty_list);
+    REGISTER_TEST(test_tail_of_list_with_one_element_is_empty);
+    REGISTER_TEST(test_tail_of_list_with_several_elements_is_not_empty);
+    REGISTER_TEST(test_head_of_tail_of_list_is_second_element);
+    REGISTER_TEST(test_tail_of_non_empty_list_is_one_smaller);
+    puts("16");
+    REGISTER_TEST(test_pop_head_gets_last_prepend);
+    puts("17");
+    REGISTER_TEST(test_append_and_then_pop_has_invariant_length);
+    REGISTER_TEST(test_pop_head_decrements_length);
+    REGISTER_TEST(test_get_zero_gets_head);
+    REGISTER_TEST(test_get_later_element_returns_correct_value);
 
-    puts("Testing length()");
-    test_new_list_has_length_zero();
-    test_appending_to_list_increments_length();
-    test_prepending_to_list_increments_length();
-    pass();
-    
-    puts("Testing is_empty()");
-    test_new_list_is_empty();
-    test_list_is_not_empty_after_appending();
-    test_list_is_not_empty_after_prepending();
-    test_list_with_length_one_is_empty_after_popping();
-    pass();
-
-    puts("Testing prepend()");
-    test_prepend_to_list_has_new_element_as_head(); 
-    pass();
-
-    puts("Testing append()");
-    test_append_to_list_has_new_element_as_last_in_list();
-    pass();
-
-    puts("Testing head()");
-    test_head_of_list_is_last_prepend();
-    pass();
-
-    puts("Testing tail()");
-    test_tail_of_empty_list_is_empty_list();
-    test_tail_of_list_with_one_element_is_empty();
-    test_tail_of_list_with_several_elements_is_not_empty();
-    test_head_of_tail_of_list_is_second_element();
-    test_tail_of_non_empty_list_is_one_smaller();
-    pass();
-
-    puts("Testing pop_head()");
-    test_pop_head_gets_last_prepend();
-    test_append_and_then_pop_has_invariant_length();
-    test_pop_head_decrements_length();
-    pass();
-
-    puts("Testing get()");
-    test_get_zero_gets_head();
-    test_get_later_element_returns_correct_value();
-    pass();
-
-    pass_all();
-
+    puts("At end");
+    run_tests();
     return 0;
 }
 
