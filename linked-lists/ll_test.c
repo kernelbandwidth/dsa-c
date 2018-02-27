@@ -210,6 +210,60 @@ void test_get_later_element_returns_correct_value()
     free_list(list);
 }
 
+void test_iter_returns_iterator()
+{
+    IntLinkedList * list = new_list();
+    IntLinkedListIter * iterator = iter(list);
+    assert(NULL != iterator);
+}
+
+void test_iter_of_non_empty_list_returns_true()
+{
+    IntLinkedList * list = new_list();
+    append(list, 0);
+    IntLinkedListIter * iterator = iter(list);
+    assert(has_next(iterator));
+}
+
+void test_iter_of_empty_list_returns_false()
+{
+    IntLinkedList * list = new_list();
+    assert(!has_next(iter(list)));
+}
+
+void test_iter_has_next_returns_false_when_list_exhausted()
+{
+    IntLinkedList * list = new_list();
+    append(list, 0);
+    append(list, 1);
+    append(list, 2);
+    IntLinkedListIter * iterator = iter(list);
+    size_t count = 0;
+
+    while (has_next(iterator)) {
+	next(iterator);
+	count++;
+    }
+
+    assert(3 == count);
+}
+
+void test_iter_yields_correct_sequence()
+{
+    IntLinkedList * list = new_list();
+    int first = rand();
+    int second = rand();
+    int third = rand();
+    append(list, first);
+    append(list, second);
+    append(list, third);
+
+    IntLinkedListIter * iterator = iter(list);
+    assert(first == next(iterator));
+    assert(second == next(iterator));
+    assert(third == next(iterator));
+}
+
 int main(int argc, char ** argv)
 {
     REGISTER_TEST(test_new_list_returns_value);
@@ -233,6 +287,9 @@ int main(int argc, char ** argv)
     REGISTER_TEST(test_pop_head_decrements_length);
     REGISTER_TEST(test_get_zero_gets_head);
     REGISTER_TEST(test_get_later_element_returns_correct_value);
+    REGISTER_TEST(test_iter_returns_iterator);
+    REGISTER_TEST(test_iter_of_non_empty_list_returns_true);
+    REGISTER_TEST(test_iter_of_empty_list_returns_false);
 
     run_tests();
     return 0;
