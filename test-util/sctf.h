@@ -46,7 +46,7 @@ struct __SCTF_TEST_SET * _SCTF_new_tests()
 void __SCTF_realloc_capacity(struct __SCTF_TEST_SET * testset)
 {
     testset->capacity *= __SCTF_CAP_GROWTH_RATE;
-    testset->testfns = realloc(testset, testset->capacity * sizeof *testset->testfns);
+    testset->testfns = realloc(testset->testfns, testset->capacity * sizeof *testset->testfns);
 }
 
 static jmp_buf _SCTF_JMP_BUF;
