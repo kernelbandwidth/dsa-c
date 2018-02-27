@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "dll.h"
-#include "../test-util/util.h"
+#include "../test-util/sctf.h"
 
 void test_new_list_returns_value()
 {
@@ -310,67 +310,38 @@ void test_get_later_element_returns_correct_value()
 
 int main(int argc, char ** argv)
 {
-    puts("Testing new_list()");
-    test_new_list_returns_value();
-    pass();
+    REGISTER_TEST(test_new_list_returns_value);
+    REGISTER_TEST(test_new_list_has_length_zero);
+    REGISTER_TEST(test_appending_to_list_increments_length);
+    REGISTER_TEST(test_prepending_to_list_increments_length);
+    REGISTER_TEST(test_new_list_is_empty);
+    REGISTER_TEST(test_list_is_not_empty_after_appending);
+    REGISTER_TEST(test_list_is_not_empty_after_prepending);
+    REGISTER_TEST(test_list_with_length_one_is_empty_after_popping_head);
+    REGISTER_TEST(test_list_with_length_one_is_empty_after_popping_last);
+    REGISTER_TEST(test_prepend_to_list_has_new_element_as_head);
+    REGISTER_TEST(test_append_to_list_has_new_element_as_last);
+    REGISTER_TEST(test_tail_of_empty_list_is_empty_list);
+    REGISTER_TEST(test_tail_of_list_with_one_element_is_empty);
+    REGISTER_TEST(test_tail_of_list_with_several_elements_is_not_empty);
+    REGISTER_TEST(test_head_of_tail_of_list_is_second_element);
+    REGISTER_TEST(test_tail_of_non_empty_list_is_one_smaller);
+    REGISTER_TEST(test_init_of_empty_list_is_empty_list);
+    REGISTER_TEST(test_init_of_list_with_one_element_is_empty_list);
+    REGISTER_TEST(test_init_of_list_with_several_elements_is_not_empty);
+    REGISTER_TEST(test_last_of_init_of_list_is_second_to_last_element);
+    REGISTER_TEST(test_init_of_non_empty_list_is_one_smaller);
+    REGISTER_TEST(test_pop_head_gets_last_prepend);
+    REGISTER_TEST(test_prepend_and_then_pop_head_has_invariant_length);
+    REGISTER_TEST(test_pop_head_decrements_length);
+    REGISTER_TEST(test_pop_last_gets_last_append);
+    REGISTER_TEST(test_append_and_then_pop_last_has_invariant_length);
+    REGISTER_TEST(test_pop_last_decrements_length);
+    REGISTER_TEST(test_get_zero_gets_head);
+    REGISTER_TEST(test_get_size_minus_one_gets_last);
+    REGISTER_TEST(test_get_later_element_returns_correct_value);
 
-    puts("Testing length()");
-    test_new_list_has_length_zero();
-    test_appending_to_list_increments_length();
-    test_prepending_to_list_increments_length();
-    pass();
-
-    puts("Testing is_empty()");
-    test_new_list_is_empty();
-    test_list_is_not_empty_after_appending();
-    test_list_is_not_empty_after_prepending();
-    test_list_with_length_one_is_empty_after_popping_head();
-    test_list_with_length_one_is_empty_after_popping_last();
-    pass();
-
-    puts("Testing prepend()");
-    test_prepend_to_list_has_new_element_as_head();
-    pass();
-
-    puts("Testing append()");
-    test_append_to_list_has_new_element_as_last();
-    pass();
-
-    puts("Testing tail()");
-    test_tail_of_empty_list_is_empty_list();
-    test_tail_of_list_with_one_element_is_empty();
-    test_tail_of_list_with_several_elements_is_not_empty();
-    test_head_of_tail_of_list_is_second_element();
-    test_tail_of_non_empty_list_is_one_smaller();
-    pass();
-
-    puts("Testing init()");
-    test_init_of_empty_list_is_empty_list();
-    test_init_of_list_with_one_element_is_empty_list();
-    test_init_of_list_with_several_elements_is_not_empty();
-    test_last_of_init_of_list_is_second_to_last_element();
-    test_init_of_non_empty_list_is_one_smaller();
-    pass();
-
-    puts("Testing pop_head()");
-    test_pop_head_gets_last_prepend();
-    test_prepend_and_then_pop_head_has_invariant_length();
-    test_pop_head_decrements_length();
-    pass();
-
-    puts("Testing pop_last()");
-    test_pop_last_gets_last_append();
-    test_append_and_then_pop_last_has_invariant_length();
-    test_pop_last_decrements_length();
-    pass();
-
-    puts("Testing get()");
-    test_get_zero_gets_head();
-    test_get_size_minus_one_gets_last();
-    test_get_later_element_returns_correct_value();
-    pass();
-
-    pass_all();
+    run_tests();
 
     return 0;
 }
