@@ -12,6 +12,10 @@ struct _IntLinkedList {
     IntLinkedListNode * tail;
 };
 
+struct _IntLinkedListIterator {
+    IntLinkedList * current;
+};
+
 // Provided implementations
 IntLinkedList * new_list() 
 {
@@ -71,6 +75,24 @@ int pop_head(IntLinkedList * list)
 }
 
 int get(IntLinkedList * list, int index)
+{
+    return 0;
+}
+
+IntLinkedListIter * iter(IntLinkedList * list)
+{
+    // Provided implementation
+    IntLinkedListIter * iterator = malloc(sizeof *iterator);
+    iterator->current = list->head;
+    return iterator;
+}
+
+bool has_next(IntLinkedListIter * iter)
+{
+    return true;
+}
+
+int next(IntLinkedListIter * iter)
 {
     return 0;
 }
