@@ -8,9 +8,9 @@
 
 ### Lists
 - Abstract Interface
-- Linked Lists (Tests Done)
-    - Iterators
-- Doubly-Linked Lists (Tests Done)
+- Linked Lists (Tests Done, Skeleton Done, Solutions Done)
+    - Iterators (Tests Done, Skeleton Done)
+- Doubly-Linked Lists (Tests Done, Skeleton Done)
     - Double Ended Iterators
 - Vectors
 
