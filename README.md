@@ -12,7 +12,7 @@
     - Iterators (Tests Done, Skeleton Done)
 - Doubly-Linked Lists (Tests Done, Skeleton Done)
     - Double Ended Iterators
-- Vectors
+- Vectors (Tests Done, Skeleton Done)
 
 ### Stacks
 - Abstract Interface
