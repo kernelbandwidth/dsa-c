@@ -21,7 +21,7 @@ struct _IntLinkedList {
 };
 
 struct _IntLinkedListIterator {
-    IntLinkedList * current;
+    IntLinkedListNode * current;
 };
 
 // Provided implementations
@@ -149,11 +149,14 @@ IntLinkedListIter * iter(IntLinkedList * list)
 
 bool has_next(IntLinkedListIter * iter)
 {
-    return true;
+    return iter->current != NULL;
 }
 
 int next(IntLinkedListIter * iter)
 {
-    return 0;
+    int value = iter->current->value;
+    iter->current = iter->current->next;
+
+    return value;
 }
 
