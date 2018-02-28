@@ -2,6 +2,7 @@
 #define __DSA_C_VECTOR_H__
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 
 typedef struct _IntVec IntVec;
@@ -15,7 +16,7 @@ size_t capacity(IntVec * vec);
 void push(IntVec * vec, int32_t elem);
 int32_t pop(IntVec * vec);
 int32_t get(IntVec * vec, size_t index);
-int32_t remove(IntVec * vec, size_t index);
+int32_t vremove(IntVec * vec, size_t index);
 void insert(IntVec * vec, size_t index, int32_t elem);
 
 #endif

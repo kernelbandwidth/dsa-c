@@ -1,9 +1,10 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "vector.h"
 
-static VEC_REALLOC_GROWTH = 2;
-static VEC_DEFAULT_SIZE = 16;
+static size_t VEC_REALLOC_GROWTH = 2;
+static size_t VEC_DEFAULT_SIZE = 16;
 
 struct _IntVec {
     int32_t * data;
@@ -17,6 +18,8 @@ IntVec * new_vec()
     vec->data = malloc(VEC_DEFAULT_SIZE * sizeof *vec->data);
     vec->capacity = VEC_DEFAULT_SIZE;
     vec->length = 0;
+
+    return vec;
 }
 
 // TODO(student): Implement a constructor that takes a capacity argument
@@ -76,7 +79,7 @@ int32_t get(IntVec * vec, size_t index)
     return 0;
 }
 
-int32_t remove(IntVec * vec, size_t index)
+int32_t vremove(IntVec * vec, size_t index)
 {
     return 0;
 }
