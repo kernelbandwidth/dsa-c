@@ -102,7 +102,7 @@ void test_vremove_yields_correct_element_and_removes_it()
     push(vec, expected);
     push(vec, 3);
     assert(4 == length(vec));
-    assert(expected == vremove(vec, 3));
+    assert(expected == vremove(vec, 2));
     assert(3 == length(vec));
     free_vec(vec);
 }
