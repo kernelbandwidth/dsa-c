@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -25,7 +26,12 @@ IntVec * new_vec()
 // TODO(student): Implement a constructor that takes a capacity argument
 IntVec * new_vec_with_capacity(size_t cap)
 {
-    return NULL;
+    IntVec * vec = malloc(sizeof *vec);
+    vec->data = malloc(cap * sizeof *vec->data);
+    vec->capacity = cap;
+    vec->length = 0;
+
+    return vec;
 }
 
 // free_vec implementation is supplied
@@ -51,40 +57,63 @@ void increase_data_buffer(IntVec * vec)
 //TODO(student): Implement the remaining functions
 bool is_empty(IntVec * vec)
 {
-    return true;
+    return vec->length == 0;
 }
 
 size_t length(IntVec * vec)
 {
-    return 0;
+    return vec->length;
 }
 
 size_t capacity(IntVec * vec)
 {
-    return 0;
+    return vec->capacity;
 }
 
 void push(IntVec * vec, int32_t elem)
 {
+    if (vec->length == vec->capacity) {
+	increase_data_buffer(vec);
+    }
 
+    vec->data[vec->length] = elem;
+    vec->length++;
 }
 
 int32_t pop(IntVec * vec)
 {
-    return 0;
+    assert(!is_empty(vec));
+    int32_t value = vec->data[vec->length - 1];
+    vec->length--;
+    return value;
 }
 
 int32_t get(IntVec * vec, size_t index)
 {
-    return 0;
+    assert(index < vec->length);
+    return vec->data[index];
 }
 
 int32_t vremove(IntVec * vec, size_t index)
 {
-    return 0;
+    assert(index < vec->length);
+    int32_t value = vec->data[index];
+    for (size_t idx = index + 1; idx < vec->length; idx++) {
+	vec->data[idx-1] = vec->data[idx];
+    }
+    vec->length--;
+    return value;
 }
 
 void insert(IntVec * vec, size_t index, int32_t elem)
 {
+    if (vec->length == vec->capacity) {
+	increase_data_buffer(vec);
+    }
 
+    for (size_t idx = vec->length; idx > index; idx--) {
+	vec->data[idx] = vec->data[idx-1];
+    }
+
+    vec->data[index] = elem;
 }
