@@ -77,12 +77,22 @@ void catch_abort_handler(int sig)
     longjmp(_SCTF_JMP_BUF, 0);
 }
 
+void catch_segfault_handler(int sig)
+{
+    puts("SEGMENTATION FAULT: INVALID MEMORY ACCESS. TEST FAILED");
+    _SCTF_TEST_FAIL_COUNT++;
+    _SCTF_TEST_COUNT++;
+    signal(sig, catch_segfault_handler);
+    longjmp(_SCTF_JMP_BUF, 0);
+}
+
 void run_tests() 
 {
     puts("Simple C Test Framework");
     printf("Running %zu tests.\n\n", SCTFTests->length);
 
     signal(SIGABRT, catch_abort_handler);
+    signal(SIGSEGV, catch_segfault_handler);
     setjmp(_SCTF_JMP_BUF);
     while (_SCTF_TEST_COUNT < SCTFTests->length) {
 	printf("Running test: %s\n", SCTFTests->testfns[_SCTF_TEST_COUNT]->name);
