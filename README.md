@@ -1,23 +1,19 @@
 # Tutorial on Data Structures and Algorithms in C
 
-## Data Structures
+## Prologue
 
-### Arrays
-- Arrays in C
-- Dynamic Arrays
+### SCTF: The Simple C Testing Framework
+
+## Part 1: Data Structures
 
 ### Lists
-- Abstract Interface
 - Linked Lists (Tests Done, Skeleton Done, Solutions Done)
-    - Iterators (Tests Done, Skeleton Done)
-- Doubly-Linked Lists (Tests Done, Skeleton Done)
-    - Double Ended Iterators
-- Vectors (Tests Done, Skeleton Done)
+    - Iterators (Tests Done, Skeleton Done, Solutions Done)
+- Vectors (Tests Done, Skeleton Done, Solutions Done)
 
 ### Stacks
-- Abstract Interface
 - Vector Backed
-- Linked List Backed
+- Linked List Backed (Tests Done, Skeleton Done)
 
 ### Binary Trees
 - Binary Tree
@@ -28,25 +24,21 @@
 - Red-Black Trees
 
 ### Maps
-- Abstract Interface
 - HashMaps
     - Hash Functions
     - Hash Tables
 - TreeMaps
 
 ### Queues
-- Abstract Interface
 - Linked List Backed
 - Array Backed
 
 #### Deques
-- Abstract Interface
 - Doubly-Linked List Backed
 - Array Backed
 
 ### Priority Queues
-- Abstract Interface
 - Heaps
 
-## Algorithms
+## Part 2: Algorithms
 TBD
