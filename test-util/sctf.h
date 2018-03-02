@@ -88,7 +88,12 @@ void catch_segfault_handler(int sig)
 
 void run_tests() 
 {
-    puts("Simple C Test Framework");
+    puts("Simple C Testing Framework");
+    if (NULL == SCTFTests) {
+	puts("No tests registered.");
+	return;
+    }
+
     printf("Running %zu tests.\n\n", SCTFTests->length);
 
     signal(SIGABRT, catch_abort_handler);
